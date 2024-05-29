@@ -34,4 +34,5 @@ function handleFileSelect(event) {
   }
 }
 
+
 document.getElementById("fileInput").addEventListener("change", handleFileSelect);
