@@ -1,0 +1,23 @@
+*{
+    margin-left: 0px;
+    padding-left: 0px;
+    box-sizing: border-box;
+}
+.mainContainer{
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 10px;
+}
+.container{
+    margin: 10px;
+    padding: 10px;
+}
+
+#sourceCanvas{
+    border: 2px solid rgb(19, 18, 18);
+}
+
+#targetCanvas{border: 2px solid rgb(10, 12, 12);}
+
