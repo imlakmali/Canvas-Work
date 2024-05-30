@@ -28,12 +28,13 @@ function handlFileSelect(event) {
 
         for(let i = 0 ; i< imageData.data.length ; i+= 4){
             //  I can chenged the color.
-          imageData.data[i] = imageData.data[i];
-          imageData.data[i + 1] = imageData.data[i + 1];
-          imageData.data[i + 2] = imageData.data[i +2];
+          imageData.data[i];
+          imageData.data[i + 1];
+          imageData.data[i + 2];
+          
         }
 
-          targetCtx.putImageData(imageData, (targetCanvas.width-(img.width+img.width/2)), (targetCanvas.height-(img.height+img.height/2)));
+        targetCtx.putImageData(imageData, (targetCanvas.width-(img.width+img.width/2)), (targetCanvas.height-(img.height+img.height/2)));
 
       };
     };
