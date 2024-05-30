@@ -34,7 +34,7 @@ function handlFileSelect(event) {
           
         }
 
-        targetCtx.putImageData(imageData, (targetCanvas.width-(img.width+img.width/2)), (targetCanvas.height-(img.height+img.height/2)));
+        targetCtx.putImageData(imageData, img.width/2,img.height/2);
 
       };
     };
