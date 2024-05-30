@@ -1,4 +1,5 @@
-function handleFileSelect(event) {
+function handlFileSelect(event) {
+
   const file = event.target.files[0];
 
   if (file) {
@@ -6,6 +7,7 @@ function handleFileSelect(event) {
     reader.readAsDataURL(file);
 
     reader.onload = function () { 
+
       const img = new Image();
       img.src = reader.result;
 
@@ -17,22 +19,24 @@ function handleFileSelect(event) {
         sourceCtx.drawImage(img, 0, 0, img.width, img.height);
 
         const targetCanvas = document.getElementById("targetCanvas");
-        const targetWidth = img.width + 200; 
-        const targetHeight = img.height + 100; 
-        targetCanvas.width = targetWidth;
-        targetCanvas.height = targetHeight;
+        targetCanvas.width = img.width*2;
+        targetCanvas.height = img.height*2;
         const targetCtx = targetCanvas.getContext("2d");
+        const imageData = sourceCtx.getImageData(0,0,img.width,img.height);
+          // console.log(imageData);
+          // console.log(imageData);
 
-        const imageX = (targetWidth - img.width) / 2;
-        const imageY = (targetHeight - img.height) / 2;
+        // for(let i = 0 ; i< imageData.data.length ; i+= 4){
+        //     //  I chenged the color.
+        //   imageData.data[i] = imageData.data[i + 1];
+        //   imageData.data[i + 1] = imageData.data[i + 2];
+        //   imageData.data[i + 2] = imageData.data[i];
+        // }
 
-        targetCtx.clearRect(0, 0, targetWidth, targetHeight);
-        targetCtx.drawImage(img, imageX, imageY, img.width, img.height);
-        targetCtx.strokeRect(imageX, imageY, img.width, img.height);
+          targetCtx.putImageData(imageData, 0, 0);
+
       };
     };
   }
 }
-
-
-document.getElementById("fileInput").addEventListener("change", handleFileSelect);
+document.getElementById("fileInput").addEventListener("change", handlFileSelect);
