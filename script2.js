@@ -23,17 +23,17 @@ function handlFileSelect(event) {
         targetCanvas.height = img.height*2;
         const targetCtx = targetCanvas.getContext("2d");
         const imageData = sourceCtx.getImageData(0,0,img.width,img.height);
-          // console.log(imageData);
-          // console.log(imageData);
 
-        // for(let i = 0 ; i< imageData.data.length ; i+= 4){
-        //     //  I chenged the color.
-        //   imageData.data[i] = imageData.data[i + 1];
-        //   imageData.data[i + 1] = imageData.data[i + 2];
-        //   imageData.data[i + 2] = imageData.data[i];
-        // }
 
-          targetCtx.putImageData(imageData, 0, 0);
+
+        for(let i = 0 ; i< imageData.data.length ; i+= 4){
+            //  I can chenged the color.
+          imageData.data[i] = imageData.data[i];
+          imageData.data[i + 1] = imageData.data[i + 1];
+          imageData.data[i + 2] = imageData.data[i +2];
+        }
+
+          targetCtx.putImageData(imageData, (targetCanvas.width-(img.width+img.width/2)), (targetCanvas.height-(img.height+img.height/2)));
 
       };
     };
