@@ -10,6 +10,8 @@ function handlFileSelect(event) {
       image.src = reader.result;
 
       image.onload = function () {
+
+        //Get reference to the canvases and resize
         const sourceCanvas = document.getElementById("sourceCanvas");
         sourceCanvas.width = image.width;
         sourceCanvas.height = image.height;
@@ -19,10 +21,15 @@ function handlFileSelect(event) {
         const targetCanvas = document.getElementById("targetCanvas");
         targetCanvas.width = image.width * 2;
         targetCanvas.height = image.height * 2;
+
+
+        //Get data arrays
         const targetCtx = targetCanvas.getContext("2d");
         const sourceImage = sourceCtx.getImageData(0, 0, image.width, image.height);
         const targeteImage = targetCtx.getImageData(0,0,image.width,image.height);
 
+
+        //Copy bytes
         for (let i = 0; i < sourceImage.data.length; i += 4) {
           targeteImage.data[i] = sourceImage.data[i];
           targeteImage.data[i+1] = sourceImage[i+1];
@@ -35,6 +42,13 @@ function handlFileSelect(event) {
     };
   }
 }
+
+
 document
   .getElementById("fileInput")
   .addEventListener("change", handlFileSelect);
+
+
+function copyPixel(foo, bar) {
+   //
+}
