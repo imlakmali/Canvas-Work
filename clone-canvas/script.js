@@ -60,30 +60,3 @@ document
 
   
 
-//   //Get source
-
-// //Get destinaion
-
-
-
-// for ------ {
-
-//   copy[0 + i]
-//   copy[1 + 2]
-//   ...
-//   ....
-  
-
-
-// }
-
-
-
-
-// //Copys a full pixel from one array to another
-// copySinglePixel(foo, bar) {
-
-
-// }
-
-
