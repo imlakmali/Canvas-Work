@@ -19,6 +19,7 @@ function handlFileSelect(event) {
 }
 
 function _copyImage(image){
+  
   const sourceCanvas = document.getElementById("sourceCanvas");
   sourceCanvas.width = image.width;
   sourceCanvas.height = image.height;
@@ -33,7 +34,10 @@ function _copyImage(image){
   const sourceImg = sourceCtx.getImageData(0, 0, image.width, image.height);
   const targeteImg = targetCtx.getImageData(0,0,image.width,image.height);
 
-  _copysourcePixelTotar(targeteImg,sourceImg);
+  for (let i = 0; i < sourceImg.data.length; i += 4) {
+    _copysinglePixel(targeteImg,sourceImg,i)
+  }
+   
 
 
   targetCtx.putImageData(targeteImg, image.width / 2, image.height / 2);
@@ -41,20 +45,45 @@ function _copyImage(image){
 }
 
 
-function _copysourcePixelTotar(targeteImage,sourceImage) {
+function _copysinglePixel(targeteImage,sourceImage,indx) {
+  targeteImage.data[indx] = sourceImage.data[indx];
+  targeteImage.data[indx+1] = sourceImage[indx+1];
+  targeteImage.data[indx+2] = sourceImage.data[indx+2];
+  targeteImage.data[indx+3] = sourceImage.data[indx+3];
 
-  for (let i = 0; i < sourceImage.data.length; i += 4) {
-    targeteImage.data[i] = sourceImage.data[i];
-    targeteImage.data[i+1] = sourceImage[i+1];
-    targeteImage.data[i+2] = sourceImage.data[i+2];
-    targeteImage.data[i+3] = sourceImage.data[i+3];
-  }
-   
 }
 
 
 document
   .getElementById("fileInput")
   .addEventListener("change", handlFileSelect);
+
+  
+
+//   //Get source
+
+// //Get destinaion
+
+
+
+// for ------ {
+
+//   copy[0 + i]
+//   copy[1 + 2]
+//   ...
+//   ....
+  
+
+
+// }
+
+
+
+
+// //Copys a full pixel from one array to another
+// copySinglePixel(foo, bar) {
+
+
+// }
 
 
