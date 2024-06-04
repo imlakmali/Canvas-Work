@@ -35,17 +35,18 @@ function _copyImage(image){
   const targeteImg = targetCtx.getImageData(0,0,image.width,image.height);
 
   for (let i = 0; i < sourceImg.data.length; i += 4) {
-    _copysinglePixel(targeteImg,sourceImg,i)
-  }
-   
 
+    _copysinglePixel(targeteImg,sourceImg,i);
 
+  };
+ 
   targetCtx.putImageData(targeteImg, image.width / 2, image.height / 2);
 
 }
 
 
 function _copysinglePixel(targeteImage,sourceImage,indx) {
+  
   targeteImage.data[indx] = sourceImage.data[indx];
   targeteImage.data[indx+1] = sourceImage[indx+1];
   targeteImage.data[indx+2] = sourceImage.data[indx+2];
