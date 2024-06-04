@@ -33,7 +33,7 @@ function _copyImage(image){
   const sourceImg = sourceCtx.getImageData(0, 0, image.width, image.height);
   const targeteImg = targetCtx.getImageData(0,0,image.width,image.height);
 
-  _copysourcePixelTotar(targeteImg,sourceImg) 
+  _copysourcePixelTotar(targeteImg,sourceImg);
 
 
   targetCtx.putImageData(targeteImg, image.width / 2, image.height / 2);
@@ -42,6 +42,7 @@ function _copyImage(image){
 
 
 function _copysourcePixelTotar(targeteImage,sourceImage) {
+
   for (let i = 0; i < sourceImage.data.length; i += 4) {
     targeteImage.data[i] = sourceImage.data[i];
     targeteImage.data[i+1] = sourceImage[i+1];
