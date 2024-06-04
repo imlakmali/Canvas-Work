@@ -6,34 +6,48 @@ function handlFileSelect(event) {
     reader.readAsDataURL(file);
 
     reader.onload = function () {
-      const image = new Image();
-      image.src = reader.result;
+      const img = new Image();
+      img.src = reader.result;
 
-      image.onload = function () {
-        const sourceCanvas = document.getElementById("sourceCanvas");
-        sourceCanvas.width = image.width;
-        sourceCanvas.height = image.height;
-        const sourceCtx = sourceCanvas.getContext("2d");
-        sourceCtx.drawImage(image, 0, 0, image.width, image.height);
+      img.onload = function () {
 
-        const targetCanvas = document.getElementById("targetCanvas");
-        targetCanvas.width = image.width * 2;
-        targetCanvas.height = image.height * 2;
-        const targetCtx = targetCanvas.getContext("2d");
-        const sourceImage = sourceCtx.getImageData(0, 0, image.width, image.height);
-        const targeteImage = targetCtx.getImageData(0,0,image.width,image.height);
+        _copyImage(img);
 
-        for (let i = 0; i < sourceImage.data.length; i += 4) {
-          targeteImage.data[i] = sourceImage.data[i];
-          targeteImage.data[i+1] = sourceImage[i+1];
-          targeteImage.data[i+2] = sourceImage.data[i+2];
-          targeteImage.data[i+3] = sourceImage.data[i+3];
-        }
-
-        targetCtx.putImageData(targeteImage, image.width / 2, image.height / 2);
       };
     };
   }
+
+  function _copyImage(image) {
+    
+    const sourceCanvas = document.getElementById("sourceCanvas");
+    sourceCanvas.width = image.width;
+    sourceCanvas.height = image.height;
+    const sourceCtx = sourceCanvas.getContext("2d");
+    sourceCtx.drawImage(image, 0, 0, image.width, image.height);
+
+    const targetCanvas = document.getElementById("targetCanvas");
+    targetCanvas.width = image.width * 2;
+    targetCanvas.height = image.height * 2;
+    const targetCtx = targetCanvas.getContext("2d");
+
+    const sourceImg = sourceCtx.getImageData(0, 0, image.width, image.height);
+    const targeteImg = targetCtx.getImageData(0, 0, image.width, image.height);
+
+    _copysoursepixelTotarget(sourceImg, targeteImg);
+
+    targetCtx.putImageData(targeteImg, image.width / 2, image.height / 2);
+  }
+}
+
+function _copysoursepixelTotarget(sourceImage, targeteImage) {
+
+  for (let i = 0; i < sourceImage.data.length; i += 4) {
+    targeteImage.data[i] = sourceImage.data[i];
+    targeteImage.data[i + 1] = sourceImage[i + 1];
+    targeteImage.data[i + 2] = sourceImage.data[i + 2];
+    targeteImage.data[i + 3] = sourceImage.data[i + 3];
+  }
+  
 }
 document
   .getElementById("fileInput")
