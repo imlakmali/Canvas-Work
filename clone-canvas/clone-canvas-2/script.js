@@ -31,16 +31,18 @@ function _copyImage(image) {
   const sourceImg = sourceCtx.getImageData(0, 0, image.width, image.height);
   const targetImg = targetCtx.createImageData(image.width, image.height);
 
-  _copysinglePixel(sourceImg, targetImg, image.width, image.height);
+  _copyPixel(sourceImg, targetImg, image.width, image.height);
 
   targetCtx.putImageData(targetImg, 0, 0);
 }
 
-function _copysinglePixel(sourceImage, targetImage, width, height) {
+function _copyPixel(sourceImage, targetImage, width, height) {
+  
   for (let y = 0; y < height; y++) {
     for (let x = 0; x < width; x++) {
-      const pixel = readPixel(sourceImage.data, x, y, image.width);
-      writePixel(targetImage.data, x, y, pixel, image.width);
+      const pixel = readPixel(sourceImage.data, x, y, width);
+      writePixel(targetImage.data, x, y, pixel, width);
+      
     }
   }
 }
@@ -61,6 +63,7 @@ function writePixel(targetArr, x, y, colorObj, width) {
   targetArr[index + 1] = colorObj.g;
   targetArr[index + 2] = colorObj.b;
   targetArr[index + 3] = colorObj.a;
+  
 }
 
 document
