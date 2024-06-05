@@ -44,11 +44,10 @@ function _copyImage(image){
 
 }
 
-
 function _copysinglePixel(targeteImage,sourceImage,indx) {
   
   targeteImage.data[indx] = sourceImage.data[indx];
-  targeteImage.data[indx+1] = sourceImage[indx+1];
+  targeteImage.data[indx+1] = sourceImage.data[indx+1];
   targeteImage.data[indx+2] = sourceImage.data[indx+2];
   targeteImage.data[indx+3] = sourceImage.data[indx+3];
 
@@ -58,6 +57,3 @@ function _copysinglePixel(targeteImage,sourceImage,indx) {
 document
   .getElementById("fileInput")
   .addEventListener("change", handlFileSelect);
-
-  
-
