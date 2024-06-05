@@ -32,22 +32,18 @@ function _copyImage(image) {
   const targetImg = targetCtx.createImageData(image.width, image.height);
 
   _copysinglePixel(sourceImg, targetImg, image.width, image.height);
- 
+
   targetCtx.putImageData(targetImg, 0, 0);
 }
 
-
-
-
-function _copysinglePixel(sourceImage, targetImage, width, height ){
-
+function _copysinglePixel(sourceImage, targetImage, width, height) {
   for (let y = 0; y < height; y++) {
-  
+    for (let x = 0; x < width; x++) {
       const pixel = readPixel(sourceImage.data, x, y, image.width);
       writePixel(targetImage.data, x, y, pixel, image.width);
     }
   }
-
+}
 
 function readPixel(sourceArr, x, y, width) {
   const index = (y * width + x) * 4;
@@ -59,7 +55,6 @@ function readPixel(sourceArr, x, y, width) {
   };
 }
 
-
 function writePixel(targetArr, x, y, colorObj, width) {
   const index = (y * width + x) * 4;
   targetArr[index] = colorObj.r;
@@ -68,10 +63,6 @@ function writePixel(targetArr, x, y, colorObj, width) {
   targetArr[index + 3] = colorObj.a;
 }
 
-
-
-document.getElementById("fileInput").addEventListener("change", handleFileSelect);
-
-
-
-
+document
+  .getElementById("fileInput")
+  .addEventListener("change", handleFileSelect);
