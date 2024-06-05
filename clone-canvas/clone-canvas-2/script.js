@@ -17,25 +17,36 @@ function handleFileSelect(event) {
 }
 
 function _copyImage(image) {
+  //--get the sourseCanvas
   const sourceCanvas = document.getElementById("sourceCanvas");
   sourceCanvas.width = image.width;
   sourceCanvas.height = image.height;
   const sourceCtx = sourceCanvas.getContext("2d");
+
+  //--drow the image into the sourseCanvas
   sourceCtx.drawImage(image, 0, 0, image.width, image.height);
 
+ //--get the targetCanvas
   const targetCanvas = document.getElementById("targetCanvas");
   targetCanvas.width = image.width;
   targetCanvas.height = image.height;
   const targetCtx = targetCanvas.getContext("2d");
 
+ //--get the image data frome the sourceCanvas
   const sourceImg = sourceCtx.getImageData(0, 0, image.width, image.height);
+
+  //create the new image data object for a targetCanvas
   const targetImg = targetCtx.createImageData(image.width, image.height);
 
+ 
+  //copy pixel from the source image data to target image data
   _copyPixel(sourceImg, targetImg, image.width, image.height);
 
   targetCtx.putImageData(targetImg, 0, 0);
 }
 
+
+//copy each pixel from sourse image data to the target image data
 function _copyPixel(sourceImage, targetImage, width, height) {
   
   for (let y = 0; y < height; y++) {
@@ -47,6 +58,8 @@ function _copyPixel(sourceImage, targetImage, width, height) {
   }
 }
 
+
+//read the each pixel color from source image data
 function readPixel(sourceArr, x, y, width) {
   const index = (y * width + x) * 4;
   return {
@@ -57,6 +70,8 @@ function readPixel(sourceArr, x, y, width) {
   };
 }
 
+
+// write the each pixel color for target image data
 function writePixel(targetArr, x, y, colorObj, width) {
   const index = (y * width + x) * 4;
   targetArr[index] = colorObj.r;
