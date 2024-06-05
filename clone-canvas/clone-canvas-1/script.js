@@ -27,8 +27,8 @@ function _copyImage(image){
   sourceCtx.drawImage(image, 0, 0, image.width, image.height);
 
   const targetCanvas = document.getElementById("targetCanvas");
-  targetCanvas.width = image.width * 2;
-  targetCanvas.height = image.height * 2;
+  targetCanvas.width = image.width ;
+  targetCanvas.height = image.height;
   const targetCtx = targetCanvas.getContext("2d");
 
   const sourceImg = sourceCtx.getImageData(0, 0, image.width, image.height);
@@ -40,7 +40,7 @@ function _copyImage(image){
 
   };
  
-  targetCtx.putImageData(targeteImg, image.width / 2, image.height / 2);
+  targetCtx.putImageData(targeteImg, 0,0);
 
 }
 
