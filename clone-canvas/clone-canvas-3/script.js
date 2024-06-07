@@ -36,23 +36,26 @@ function _copyImage(image) {
   const sourceImg = sourceCtx.getImageData(0, 0, image.width, image.height);
 
   //create the new image data object for a targetCanvas
-  const targetImg = targetCtx.createImageData(image.width, image.height);
+  const targetImg = targetCtx.createImageData(image.width * 2, image.height * 2 );
 
  
   //copy pixel from the source image data to target image data
   _copyPixel(sourceImg, targetImg, image.width, image.height);
 
-  targetCtx.putImageData(targetImg, image.width/2, image.height/2);
+  targetCtx.putImageData(targetImg, 0, 0);
 }
 
 
 //copy each pixel from sourse image data to the target image data
 function _copyPixel(sourceImage, targetImage, width, height) {
+
+  const  chngeWidth = width/2;
+  const  changeHeight = height/2;
   
   for (let y = 0; y < height; y++) {
     for (let x = 0; x < width; x++) {
       const pixel = readPixel(sourceImage.data, x, y, width);
-      writePixel(targetImage.data, x, y, pixel, width);
+      writePixel(targetImage.data, (x+chngeWidth), (y+changeHeight), pixel, width*2);
       
     }
   }
