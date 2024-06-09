@@ -50,8 +50,8 @@ function _copyImage(image) {
 //copy each pixel from sourse image data to the target image data
 function _copyPixel(sourceImage, targetImage, sourceWidth, sourceHeight, targetWidth, targetHeight) {
 
-  const  chngeWidth = Math.floor((targetWidth-sourceWidth)/2);
-  const  changeHeight = Math.floor((targetHeight-sourceHeight)/2);
+  const  chngeWidth = Math.floor(sourceWidth/2);
+  const  changeHeight = Math.floor(sourceHeight/2);
   
   
   for (let y = 0; y < sourceHeight; y++) {
